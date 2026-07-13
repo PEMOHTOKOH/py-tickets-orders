@@ -8,8 +8,7 @@ from cinema.models import (
     Movie,
     MovieSession,
     Ticket,
-    Order
-)
+    Order)
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -83,8 +82,6 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 
 class TicketSerializer(serializers.ModelSerializer):
-    movie_session = MovieSessionListSerializer()
-
     class Meta:
         model = Ticket
         fields = (
@@ -125,7 +122,10 @@ class MovieSessionDetailSerializer(MovieSessionSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    tickets = TicketSerializer(many=True, read_only=False, allow_empty=False)
+    tickets = TicketSerializer(
+        many=True,
+        allow_empty=False
+    )
 
     class Meta:
         model = Order
@@ -151,5 +151,5 @@ class TicketListSerializer(TicketSerializer):
 class OrderListSerializer(OrderSerializer):
     tickets = TicketListSerializer(
         many=True,
-        read_only=False,
+        read_only=True,
     )

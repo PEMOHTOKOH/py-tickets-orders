@@ -5,12 +5,11 @@ from django.db.models import (
     F,
     Count,
     ExpressionWrapper,
-    IntegerField
-)
+    IntegerField)
+
 from rest_framework import (
     viewsets,
-    serializers
-)
+    serializers)
 
 from cinema.models import (
     Genre,
@@ -18,8 +17,7 @@ from cinema.models import (
     CinemaHall,
     Movie,
     MovieSession,
-    Order
-)
+    Order)
 
 from cinema.serializers import (
     GenreSerializer,
@@ -32,8 +30,7 @@ from cinema.serializers import (
     MovieSessionDetailSerializer,
     MovieListSerializer,
     OrderSerializer,
-    OrderListSerializer,
-)
+    OrderListSerializer)
 
 
 class GenreViewSet(viewsets.ModelViewSet):
