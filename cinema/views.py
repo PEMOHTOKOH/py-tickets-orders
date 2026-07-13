@@ -1,36 +1,32 @@
 from typing import List
 
-from django.db.models import (
-    QuerySet,
-    F,
-    Count,
-    ExpressionWrapper,
-    IntegerField)
+from django.db.models import (QuerySet,
+                              F,
+                              Count,
+                              ExpressionWrapper,
+                              IntegerField,)
 
-from rest_framework import (
-    viewsets,
-    serializers)
+from rest_framework import (viewsets,
+                            serializers,)
 
-from cinema.models import (
-    Genre,
-    Actor,
-    CinemaHall,
-    Movie,
-    MovieSession,
-    Order)
+from cinema.models import (Genre,
+                           Actor,
+                           CinemaHall,
+                           Movie,
+                           MovieSession,
+                           Order,)
 
-from cinema.serializers import (
-    GenreSerializer,
-    ActorSerializer,
-    CinemaHallSerializer,
-    MovieSerializer,
-    MovieSessionSerializer,
-    MovieSessionListSerializer,
-    MovieDetailSerializer,
-    MovieSessionDetailSerializer,
-    MovieListSerializer,
-    OrderSerializer,
-    OrderListSerializer)
+from cinema.serializers import (GenreSerializer,
+                                ActorSerializer,
+                                CinemaHallSerializer,
+                                MovieSerializer,
+                                MovieSessionSerializer,
+                                MovieSessionListSerializer,
+                                MovieDetailSerializer,
+                                MovieSessionDetailSerializer,
+                                MovieListSerializer,
+                                OrderSerializer,
+                                OrderListSerializer,)
 
 
 class GenreViewSet(viewsets.ModelViewSet):
