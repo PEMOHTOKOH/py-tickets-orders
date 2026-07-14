@@ -4,17 +4,19 @@ from django.db.models import (QuerySet,
                               F,
                               Count,
                               ExpressionWrapper,
-                              IntegerField,)
+                              IntegerField, )
 
 from rest_framework import (viewsets,
-                            serializers,)
+                            serializers, )
+
+from rest_framework.pagination import PageNumberPagination
 
 from cinema.models import (Genre,
                            Actor,
                            CinemaHall,
                            Movie,
                            MovieSession,
-                           Order,)
+                           Order, )
 
 from cinema.serializers import (GenreSerializer,
                                 ActorSerializer,
@@ -26,7 +28,7 @@ from cinema.serializers import (GenreSerializer,
                                 MovieSessionDetailSerializer,
                                 MovieListSerializer,
                                 OrderSerializer,
-                                OrderListSerializer,)
+                                OrderListSerializer, )
 
 
 class GenreViewSet(viewsets.ModelViewSet):
@@ -106,7 +108,7 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
         movie = self.request.query_params.get("movie")
 
         if date:
-            queryset = queryset.filter(show_time=date)
+            queryset = queryset.filter(show_time__date=date)
 
         if movie:
             queryset = queryset.filter(movie__id=movie)
@@ -128,16 +130,16 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
         return queryset.distinct()
 
 
-# class OrderSetPagination(PageNumberPagination):
-#     page_size = 4
-#     page_size_query_param = "page_size"
-#     max_page_size = 10
+class OrderSetPagination(PageNumberPagination):
+    page_size = 4
+    page_size_query_param = "page_size"
+    max_page_size = 10
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    # pagination_class = OrderSetPagination
+    pagination_class = OrderSetPagination
 
     def get_queryset(self) -> QuerySet:
         return (
